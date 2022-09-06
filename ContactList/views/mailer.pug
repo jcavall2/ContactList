@@ -1,0 +1,79 @@
+extends layout 
+
+block content 
+    body
+        P.alert.alert-primary.d-none.d-md-block
+            |Please enter your information to be added to the contact page.
+
+        form(action="thanks", method="post")
+            .form-group
+                .container
+                    .row
+                        .col
+                            .form-check.form-check-inline
+                                input.form-check-input(type="radio", name="Prefix", checked="checked" value = "Mr.") 
+                                label.form-check-label(for="Mr.") Mr.
+                            .form-check.form-check-inline
+                                input.form-check-input(type="radio", name="Prefix", value = "Mrs.")
+                                label.form-check-label(for="Mrs.") Mrs.
+                            .form-check.form-check-inline
+                                input.form-check-input(type="radio", name="Prefix", value = "Ms.")
+                                label.form-check-label(for="Ms.") Ms.
+                            .form-check.form-check-inline
+                                input.form-check-input(type="radio", name="Prefix", value = "Dr.")
+                                label.form-check-label(for="Dr.") Dr.
+                    .row
+                        .col
+                            label(for="FirstName") First Name:
+                            input.form-control(type="text", name="FirstName")
+                    
+                        .col
+                            label(for="LastName") Last Name:
+                            input.form-control(type="text", name="LastName")
+                    .row 
+                        .col
+                            label(for="Street") Street:
+                            input.form-control(type="text", name="Street")
+
+                        .col
+                            label(for="City") City:
+                            input.form-control(type="text", name="City")
+
+                        .col
+                            label(for="State") State(Abbreviation):
+                            input.form-control(type="text", name="State")
+                        .col 
+                            label(for="Zip") Zip code: 
+                            input.form-control(type="text", name="Zip")
+                    .row
+                        .col
+                            label(for="Phone") Phone Number:
+                            input.form-control(type="text", name="Phone")
+
+                        .col
+                            label(for="Email") Email Address:
+                            input.form-control(type="text", name="Email")
+
+                    .row
+                        .col
+                            label(For="Contact") How may we contact you?
+
+                            .form-check
+                                input.form-check-input(type="checkbox", name="MailContact" value="MailContact")
+                                label.form-check-label(for="MailContact") Mail
+                            .form-check
+                                input.form-check-input(type="checkbox", name="PhoneContact" value="PhoneContact")
+                                label.form-check-label(for="PhoneContact") Phone
+                            .form-check
+                                input.form-check-input(type="checkbox", name="EmailContact" value="EmailContact")
+                                label.form-check-label(for="EmailContact") Email
+                    .row 
+                        .col
+                            button.btn.btn-outline-success.addspace(type="submit") Submit
+
+
+        .container 
+            .row 
+                .col
+                    form(action="/contacts")
+                        button.btn.btn-danger.addspace(type="submit") View Contact List WITHOUT creating new contact

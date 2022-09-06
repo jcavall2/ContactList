@@ -1,0 +1,105 @@
+extends layout 
+
+block content
+	body
+		P.alert.alert-primary
+			|Please update your information.
+
+		form(action="updater", method="post")
+			.form-group
+				.container
+					.row
+						.col
+							.form-check.form-check-inline
+								if contact.prefix == "Mr."
+									input.form-check-input(type="radio", name="Prefix", checked="checked", value = "Mr.") 
+									label.form-check-label(for="Mr.") Mr.
+								else 
+									input.form-check-input(type="radio", name="Prefix", value = "Mr.") 
+									label.form-check-label(for="Mr.") Mr.
+							.form-check.form-check-inline
+								if contact.prefix == "Mrs."
+									input.form-check-input(type="radio", name="Prefix", checked="checked", value = "Mrs.")
+									label.form-check-label(for="Mrs.") Mrs.
+								else
+									input.form-check-input(type="radio", name="Prefix", value = "Mrs.")
+									label.form-check-label(for="Mrs.") Mrs.
+							.form-check.form-check-inline
+								if contact.prefix == "Ms."
+									input.form-check-input(type="radio", name="Prefix", checked="checked", value = "Ms.")
+									label.form-check-label(for="Ms.") Ms.
+								else
+									input.form-check-input(type="radio", name="Prefix", value = "Ms.")
+									label.form-check-label(for="Ms.") Ms.
+							.form-check.form-check-inline
+								if contact.prefix == "Dr."
+									input.form-check-input(type="radio", name="Prefix", checked="checked", value = "Dr.")
+									label.form-check-label(for="Dr.") Dr.
+								else
+									input.form-check-input(type="radio", name="Prefix", value = "Dr.")
+									label.form-check-label(for="Dr.") Dr.
+					.row
+						.col
+							label(for="FirstName") First Name:
+							input.form-control(type="text", name="FirstName", value=contact.first)
+
+						.col
+							label(for="LastName") Last Name:
+							input.form-control(type="text", name="LastName", value=contact.last)
+
+					.row 
+						.col
+							label(for="Street") Street:
+							input.form-control(type="text", name="Street", value=contact.street)
+						.col
+							label(for="City") City:
+							input.form-control(type="text", name="City", value=contact.city)
+						.col
+							label(for="State") State(Abbreviation):
+							input.form-control(type="text", name="State", value=contact.state)
+						.col 
+							label(for="Zip") Zip Code: 
+							input.form-control(type="text", name="Zip", value=contact.zip)
+					.row 
+						.col
+							label(for="Phone") Phone Number:
+							input.form-control(type="text", name="Phone", value=contact.phone)
+						.col
+							label(for="Email") Email Address:
+							input.form-control(type="text", name="Email", value=contact.email)
+
+					.row 
+						.col 
+							label(For="Contact") How may we contact you?
+
+							.form-check
+								if contact.mailContact
+									input.form-check-input(type="checkbox", name="MailContact" value="MailContact", checked="checked")
+									label.form-check-label(for="MailContact") Mail
+								else
+									input.form-check-input(type="checkbox", name="MailContact" value="MailContact")
+									label.form-check-label(for="MailContact") Mail
+							.form-check
+								if contact.phoneContact
+									input.form-check-input(type="checkbox", name="PhoneContact" value="PhoneContact", checked="checked")
+									label.form-check-label(for="PhoneContact") Phone
+								else
+									input.form-check-input(type="checkbox", name="PhoneContact" value="PhoneContact")
+									label.form-check-label(for="PhoneContact") Phone
+							.form-check
+								if contact.emailContact 
+									input.form-check-input(type="checkbox", name="EmailContact" value="EmailContact", checked="checked")
+									label.form-check-label(for="EmailContact") Email
+								else
+									input.form-check-input(type="checkbox", name="EmailContact" value="EmailContact")
+									label.form-check-label(for="EmailContact") Email
+					.row 
+						.col 
+							button.btn.btn-outline-success.addspace(type="submit") Submit
+							input(type="hidden", name="ConId", value=contact._id)
+
+		.container 
+			.row 
+				.col
+					form(action="/contacts")
+						button.btn.btn-danger.addspace(type="submit") View Contact List WITHOUT updating new contact

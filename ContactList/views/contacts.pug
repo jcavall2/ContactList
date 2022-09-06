@@ -1,0 +1,53 @@
+extends layout 
+
+block content 
+    body 
+        .container
+            .row
+                .col
+                    table.table.table-striped.table-bordered
+                        tr.text-center 
+                            th Name 
+                            th Address
+                            th Zip Code
+                            th Phone Number 
+                            th Email Address 
+                            th Contact by Mail 
+                            th Contact by Phone 
+                            th Contact by Email 
+                            th Update the Contact 
+                            th Delete the Contact
+                        
+                        each c in contactList 
+                            tr.text-center 
+                                td #{c.prefix} #{c.first} #{c.last}
+                                td #{c.street} #{c.city}, #{c.state}
+                                td #{c.zip}
+                                td #{c.phone}
+                                td #{c.email}
+                                if c.mailContact
+                                    td Yes
+                                else 
+                                    td No 
+                                if c.phoneContact
+                                    td Yes 
+                                else 
+                                    td No
+                                if c.emailContact 
+                                    td Yes 
+                                else 
+                                    td No 
+
+                                td
+                                    form(action="/update")
+                                        button.btn.btn-warning(type="submit") Update
+                                        input(type="hidden", name="ConId", value=c._id)
+                                td 
+                                    form(action="/delete")
+                                        button.btn.btn-danger(type="submit") Delete
+                                        input(type="hidden", name="ConId", value=c._id)
+        
+            .row 
+                .col
+                    form(action="/mailer")
+                        button.btn.btn-success.addspace(type="submit") Create a New Contact

@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+    body
+        .text-center
+            p.alert.alert-primary #{message}
+
+        .container 
+            .row 
+                .col.text-center.col-md-7
+                    form(action="/mailer")
+                        button.btn.btn-success.addspace(type="submit") Create a New Contact
+
+                .col.text-center.col-md-3
+                    form(action="/contacts")
+                        button.btn.btn-primary.addspace(type="submit") View Contact List
